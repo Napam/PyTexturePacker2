@@ -10,9 +10,14 @@ Description:
 ----------------------------------------------------------------------------"""
 
 import os
+from abc import abstractmethod
+
+from PyTexturePacker.Rect import Rect
 
 from .. import Utils
 from .AtlasInterface import AtlasInterface
+
+from ..ImageRect import ImageRect
 
 SIZE_SEQUENCE = [2 ** ind for ind in range(32)]
 
@@ -154,10 +159,15 @@ class PackerInterface(object):
 
         return atlas_list
 
+    @abstractmethod
     def _pack(self, image_rect_list):
         raise NotImplementedError
 
-    def pack(self, input_images, output_name, output_path="", input_base_path=None):
+    def pack(self, rects: list[Rect]):
+        atlas_list: list[AtlasInterface] = self._pack(rects)
+        return [atlas.image_rect_list for atlas in atlas_list]
+
+    def pack_from_files(self, input_images: str | list[str], output_name: str, output_path="", input_base_path=str | None):
         """
         pack the input images to sheets
         :param input_images: a list of input image paths or a input dir path

@@ -24,6 +24,7 @@ class ImageRect(Rect):
         super(ImageRect, self).__init__(0, 0, 0, 0)
 
         self.image = None
+        self.id = None
         self.image_path = None
         self.source_size = (0, 0)
         self.source_box = (0, 0, 0, 0)

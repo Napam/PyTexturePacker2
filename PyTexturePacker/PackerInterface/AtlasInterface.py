@@ -10,6 +10,7 @@ Description:
 ----------------------------------------------------------------------------"""
 
 from ..Utils import ATLAS_FORMAT_PLIST, ATLAS_FORMAT_JSON
+from ..ImageRect import ImageRect
 
 MAX_RANK = 2 ** 32
 MAX_WIDTH = 1024 * 16
@@ -36,7 +37,7 @@ class AtlasInterface(object):
 
         self.force_square = force_square
 
-        self.image_rect_list = []
+        self.image_rect_list: list[ImageRect] = []
 
     def dump_plist(self, texture_file_name="", input_base_path=None, atlas_format=ATLAS_FORMAT_PLIST):
         import os

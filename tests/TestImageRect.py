@@ -23,7 +23,7 @@ class TestImageRect(unittest.TestCase):
         self.pil_image_object = Image.open(TEST_IMAGE_PATH)
 
     def tearDown(self):
-        pass
+        self.pil_image_object.close()
 
     def check_equal(self, object):
         self.assertEqual(self.test_object.image_path, object.image_path)

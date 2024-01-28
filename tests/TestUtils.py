@@ -50,6 +50,7 @@ class TestUtils(unittest.TestCase):
         image = Utils.alpha_remove(image)
         alpha_zero_count = self._count_pixel_alpha_below(image, 1)
         self.assertEqual(alpha_zero_count, 0)
+        image.close()
 
     def test_clean_pixel_alpha_below(self):
         image = Image.open(TEST_IMAGE_PATH)
@@ -66,5 +67,6 @@ class TestUtils(unittest.TestCase):
 
         alpha_below_v1_count = self._count_pixel_alpha_below(image, v1)
         alpha_below_v2_count = self._count_pixel_alpha_below(image, v2)
+        image.close()
 
         self.assertEqual(alpha_below_v2_count - alpha_below_v1_count, 0)
